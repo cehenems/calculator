@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.topcubasi.menuluornek.MainActivity">
+    <item
+        android:id="@+id/topla"
+        android:orderInCategory="1"
+        android:title="@string/topla"
+        android:icon="@drawable/topla"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cikar"
+        android:orderInCategory="2"
+        android:title="@string/cikar"
+        android:icon="@drawable/cikar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/carp"
+        android:orderInCategory="10"
+        android:title="@string/carp"
+        android:icon="@drawable/ic_baseline_star_rate_24"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bol"
+        android:orderInCategory="15"
+        android:title="@string/bol"
+        android:icon="@drawable/bolme"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/sil"
+        android:orderInCategory="100"
+        android:title="@string/sil"
+        android:icon="@drawable/sil"
+        app:showAsAction="always" />
+</menu>
