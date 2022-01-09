@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HesapMakinasi</string>
+    <string name="topla">Topla</string>
+    <string name="cikar">Çıkar</string>
+    <string name="carp">Çarp</string>
+    <string name="bol">Böl</string>
+    <string name="sil">Sil</string>
+    <string name="arama">Arama</string>
+    <array name="isimler">
+        <item>Ali</item>
+        <item>Veli</item>
+        <item>Ayşe</item>
+        <item>Fatma</item>
+        <item>Ahmet</item>
+        <item>Mehmet</item>
+    </array>
+</resources>
