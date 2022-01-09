@@ -1,0 +1,131 @@
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText etSayi1, etSayi2;
+    TextView tvsonuc;
+    ListView lvAd;
+    Button btnDigerEkran;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        etSayi1 = findViewById(R.id.etSayi1);
+        etSayi2 = findViewById(R.id.etSayi2);
+        tvsonuc = findViewById(R.id.tvSonuc);
+        lvAd=findViewById(R.id.lvAd);
+        String isimler []=getResources().getStringArray(R.array.isimler);
+        ArrayAdapter adapter=new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,isimler);
+        lvAd.setAdapter(adapter);
+        registerForContextMenu(lvAd);
+        btnDigerEkran=findViewById(R.id.digerekran);
+        btnDigerEkran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gecis=new Intent(getApplicationContext(),StyleTanimlama.class);
+                startActivity(gecis);
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.arama:
+                Toast.makeText(getApplicationContext(), "Arama seçildi", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.sms:
+                Toast.makeText(getApplicationContext(), "Mesaj seçildi", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.mail:
+                Toast.makeText(getApplicationContext(), "Mail seçildi", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.topla) {
+            int s1=Integer.parseInt(etSayi1.getText().toString());
+            int s2=Integer.parseInt(etSayi2.getText().toString());
+            tvsonuc.setText(s1+" + "+s2+" = "+(s1+s2));
+            return true;
+        } else if (id == R.id.cikar) {
+            int s1=Integer.parseInt(etSayi1.getText().toString());
+            int s2=Integer.parseInt(etSayi2.getText().toString());
+            tvsonuc.setText(s1+" - "+s2+" = "+(s1-s2));
+            return true;
+        } else if (id == R.id.carp) {
+            int s1=Integer.parseInt(etSayi1.getText().toString());
+            int s2=Integer.parseInt(etSayi2.getText().toString());
+            tvsonuc.setText(s1+" * "+s2+" = "+(s1*s2));
+            return true;
+        } else if (id == R.id.bol) {
+            int s1=Integer.parseInt(etSayi1.getText().toString());
+            int s2=Integer.parseInt(etSayi2.getText().toString());
+            tvsonuc.setText(s1+" / "+s2+" = "+(s1/s2));
+            return true;
+        } else if (id == R.id.sil) {
+            etSayi1.setText(null);
+            etSayi2.setText(null);
+            tvsonuc.setText(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void popupMenuIslem(View view) {
+        PopupMenu popupMenu=new PopupMenu(MainActivity.this, view);
+        popupMenu.inflate(R.menu.popup_menu);
+        popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.kes:
+                        Toast.makeText(getApplicationContext(), "Kes Seçildi", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.kopyala:
+                        Toast.makeText(getApplicationContext(), "Kopyala Seçildi", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.yapistir:
+                        Toast.makeText(getApplicationContext(), "Yapiştir Seçildi", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+    
+}
+
